@@ -148,9 +148,6 @@
     <Filter Include="base\accelerators\_excluded_files">
       <UniqueIdentifier>{158E591E-B6EA-0C85-8F5A-18EAFA09B4CE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="webui">
-      <UniqueIdentifier>{8F834895-4F0E-737B-F9E7-D6D40E9A436B}</UniqueIdentifier>
-    </Filter>
     <Filter Include="android">
       <UniqueIdentifier>{840B8E33-5F8C-45A0-5FD6-F07AA5687203}</UniqueIdentifier>
     </Filter>
@@ -180,7 +177,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ui.gyp"/>
+    <None Include="ui.gyp" />
     <ClInclude Include="gfx\gpu_memory_buffer.h">
       <Filter>gfx</Filter>
     </ClInclude>
@@ -1549,9 +1546,6 @@
     <ClCompile Include="base\dragdrop\drag_utils.cc">
       <Filter>base\dragdrop</Filter>
     </ClCompile>
-    <ClInclude Include="base\dragdrop\os_exchange_data_provider_win.h">
-      <Filter>base\dragdrop</Filter>
-    </ClInclude>
     <ClCompile Include="base\dragdrop\os_exchange_data.cc">
       <Filter>base\dragdrop</Filter>
     </ClCompile>
@@ -1567,9 +1561,6 @@
     <ClInclude Include="base\dragdrop\drag_drop_types.h">
       <Filter>base\dragdrop</Filter>
     </ClInclude>
-    <ClCompile Include="base\dragdrop\os_exchange_data_provider_win.cc">
-      <Filter>base\dragdrop</Filter>
-    </ClCompile>
     <ClInclude Include="base\dragdrop\drag_utils.h">
       <Filter>base\dragdrop</Filter>
     </ClInclude>
@@ -1885,18 +1876,6 @@
     <ClInclude Include="base\accelerators\platform_accelerator_cocoa.h">
       <Filter>base\accelerators\_excluded_files</Filter>
     </ClInclude>
-    <ClInclude Include="webui\jstemplate_builder.h">
-      <Filter>webui</Filter>
-    </ClInclude>
-    <ClCompile Include="webui\web_ui_util.cc">
-      <Filter>webui</Filter>
-    </ClCompile>
-    <ClInclude Include="webui\web_ui_util.h">
-      <Filter>webui</Filter>
-    </ClInclude>
-    <ClCompile Include="webui\jstemplate_builder.cc">
-      <Filter>webui</Filter>
-    </ClCompile>
     <ClCompile Include="android\view_android.cc">
       <Filter>android\_excluded_files</Filter>
     </ClCompile>
@@ -2026,5 +2005,15 @@
     <ClCompile Include="events\keycodes\keyboard_code_conversion_android.cc">
       <Filter>events\keycodes\_excluded_files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="base\dragdrop\os_exchange_data_provider_win.cc">
+      <Filter>base\dragdrop</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base\dragdrop\os_exchange_data_provider_win.h">
+      <Filter>base\dragdrop</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

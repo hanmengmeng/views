@@ -105,56 +105,56 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="painter.h"/>
-    <ClCompile Include="accessible_pane_view.cc"/>
-    <ClInclude Include="repeat_controller.h"/>
-    <ClCompile Include="debug_utils.cc"/>
-    <ClInclude Include="accessible_pane_view.h"/>
-    <ClInclude Include="border.h"/>
-    <ClCompile Include="view_model_utils.cc"/>
-    <ClInclude Include="focus_border.h"/>
-    <ClInclude Include="view.h"/>
-    <ClCompile Include="mouse_watcher_view_host.cc"/>
-    <ClCompile Include="view_model.cc"/>
-    <ClCompile Include="view.cc"/>
-    <ClCompile Include="view_win.cc"/>
-    <ClInclude Include="drag_utils.h"/>
-    <ClInclude Include="view_model_utils.h"/>
-    <ClInclude Include="mouse_watcher_view_host.h"/>
-    <ClCompile Include="background.cc"/>
-    <ClInclude Include="background.h"/>
-    <ClInclude Include="button_drag_utils.h"/>
-    <ClInclude Include="views_delegate.h"/>
-    <ClInclude Include="drag_controller.h"/>
-    <ClInclude Include="shadow_border.h"/>
-    <ClInclude Include="context_menu_controller.h"/>
-    <ClCompile Include="button_drag_utils.cc"/>
-    <ClInclude Include="mouse_constants.h"/>
-    <ClCompile Include="round_rect_painter.cc"/>
-    <ClCompile Include="event_utils_win.cc"/>
-    <ClInclude Include="mouse_watcher.h"/>
-    <ClCompile Include="view_constants.cc"/>
-    <ClCompile Include="metrics_win.cc"/>
-    <ClCompile Include="metrics.cc"/>
-    <ClInclude Include="event_utils.h"/>
-    <ClInclude Include="color_constants.h"/>
-    <ClCompile Include="mouse_constants.cc"/>
-    <ClCompile Include="drag_utils.cc"/>
-    <ClCompile Include="mouse_watcher.cc"/>
-    <ClInclude Include="round_rect_painter.h"/>
-    <ClCompile Include="painter.cc"/>
-    <ClInclude Include="metrics.h"/>
-    <ClCompile Include="shadow_border.cc"/>
-    <ClInclude Include="view_model.h"/>
-    <ClInclude Include="view_constants.h"/>
-    <ClCompile Include="repeat_controller.cc"/>
-    <None Include="views.gyp"/>
-    <ClCompile Include="focus_border.cc"/>
-    <ClCompile Include="border.cc"/>
-    <ClCompile Include="views_delegate.cc"/>
-    <ClCompile Include="color_constants.cc"/>
-    <ClInclude Include="debug_utils.h"/>
-    <ClInclude Include="native_theme_delegate.h"/>
+    <ClInclude Include="painter.h" />
+    <ClCompile Include="accessible_pane_view.cc" />
+    <ClInclude Include="repeat_controller.h" />
+    <ClCompile Include="debug_utils.cc" />
+    <ClInclude Include="accessible_pane_view.h" />
+    <ClInclude Include="border.h" />
+    <ClCompile Include="view_model_utils.cc" />
+    <ClInclude Include="focus_border.h" />
+    <ClInclude Include="view.h" />
+    <ClCompile Include="mouse_watcher_view_host.cc" />
+    <ClCompile Include="view_model.cc" />
+    <ClCompile Include="view.cc" />
+    <ClCompile Include="view_win.cc" />
+    <ClInclude Include="drag_utils.h" />
+    <ClInclude Include="view_model_utils.h" />
+    <ClInclude Include="mouse_watcher_view_host.h" />
+    <ClCompile Include="background.cc" />
+    <ClInclude Include="background.h" />
+    <ClInclude Include="button_drag_utils.h" />
+    <ClInclude Include="views_delegate.h" />
+    <ClInclude Include="drag_controller.h" />
+    <ClInclude Include="shadow_border.h" />
+    <ClInclude Include="context_menu_controller.h" />
+    <ClCompile Include="button_drag_utils.cc" />
+    <ClInclude Include="mouse_constants.h" />
+    <ClCompile Include="round_rect_painter.cc" />
+    <ClCompile Include="event_utils_win.cc" />
+    <ClInclude Include="mouse_watcher.h" />
+    <ClCompile Include="view_constants.cc" />
+    <ClCompile Include="metrics_win.cc" />
+    <ClCompile Include="metrics.cc" />
+    <ClInclude Include="event_utils.h" />
+    <ClInclude Include="color_constants.h" />
+    <ClCompile Include="mouse_constants.cc" />
+    <ClCompile Include="drag_utils.cc" />
+    <ClCompile Include="mouse_watcher.cc" />
+    <ClInclude Include="round_rect_painter.h" />
+    <ClCompile Include="painter.cc" />
+    <ClInclude Include="metrics.h" />
+    <ClCompile Include="shadow_border.cc" />
+    <ClInclude Include="view_model.h" />
+    <ClInclude Include="view_constants.h" />
+    <ClCompile Include="repeat_controller.cc" />
+    <None Include="views.gyp" />
+    <ClCompile Include="focus_border.cc" />
+    <ClCompile Include="border.cc" />
+    <ClCompile Include="views_delegate.cc" />
+    <ClCompile Include="color_constants.cc" />
+    <ClInclude Include="debug_utils.h" />
+    <ClInclude Include="native_theme_delegate.h" />
     <ClCompile Include="view_constants_aura.cc">
       <Filter>_excluded_files</Filter>
     </ClCompile>
@@ -1150,18 +1150,6 @@
     </ClCompile>
     <ClInclude Include="controls\native\native_view_host_aura.h">
       <Filter>controls\native\_excluded_files</Filter>
-    </ClInclude>
-    <ClInclude Include="accessibility\native_view_accessibility.h">
-      <Filter>accessibility</Filter>
-    </ClInclude>
-    <ClCompile Include="accessibility\native_view_accessibility_win.cc">
-      <Filter>accessibility</Filter>
-    </ClCompile>
-    <ClCompile Include="accessibility\native_view_accessibility.cc">
-      <Filter>accessibility</Filter>
-    </ClCompile>
-    <ClInclude Include="accessibility\native_view_accessibility_win.h">
-      <Filter>accessibility</Filter>
     </ClInclude>
     <ClInclude Include="window\window_shape.h">
       <Filter>window</Filter>

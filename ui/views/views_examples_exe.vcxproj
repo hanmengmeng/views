@@ -48,7 +48,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\third_party\wtl\include;C:\Program Files (x86)\Windows Kits\8.0\Include\shared;C:\Program Files (x86)\Windows Kits\8.0\Include\um;C:\Program Files (x86)\Windows Kits\8.0\Include\winrt;$(VSInstallDir)\VC\atlmfc\include;..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\third_party\wtl\include;C:\Program Files (x86)\Windows Kits\8.0\Include\shared;C:\Program Files (x86)\Windows Kits\8.0\Include\um;C:\Program Files (x86)\Windows Kits\8.0\Include\winrt;$(VSInstallDir)\VC\atlmfc\include;..\..;$(OutDir)obj\global_intermediate\ui\ui_resources;..\..\third_party\skia\include\config;$(OutDir)obj\global_intermediate\ui\ui_strings;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/MP /we4389 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
@@ -160,7 +160,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\third_party\wtl\include;C:\Program Files (x86)\Windows Kits\8.0\Include\shared;C:\Program Files (x86)\Windows Kits\8.0\Include\um;C:\Program Files (x86)\Windows Kits\8.0\Include\winrt;$(VSInstallDir)\VC\atlmfc\include;..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\third_party\wtl\include;C:\Program Files (x86)\Windows Kits\8.0\Include\shared;C:\Program Files (x86)\Windows Kits\8.0\Include\um;C:\Program Files (x86)\Windows Kits\8.0\Include\winrt;$(VSInstallDir)\VC\atlmfc\include;..\..;$(OutDir)obj\global_intermediate\ui\ui_resources;..\..\third_party\skia\include\config;$(OutDir)obj\global_intermediate\ui\ui_strings;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/MP /we4389 /Oy- %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -283,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="examples\examples_main.cc" />
+    <ClCompile Include="examples\mitunes_nonclient_frame_view.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\base\base.vcxproj">
@@ -315,18 +316,6 @@
     <ProjectReference Include="..\..\skia\skia_opts_ssse3.vcxproj">
       <Project>{2398dcd7-bcfe-88d1-3b36-02e33ba686fc}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\third_party\iaccessible2\iaccessible2.vcxproj">
-      <Project>{5bb7fe19-f152-af9a-51f5-83456cc85764}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\third_party\modp_b64\modp_b64.vcxproj">
-      <Project>{7daf66aa-e2dc-23ec-e07c-da325bd37907}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\third_party\zlib\zlib.vcxproj">
-      <Project>{a05fdcd3-48d0-2012-c397-9df3df2dd3eb}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\url\url_lib.vcxproj">
-      <Project>{389f0528-26df-53c7-3eaf-b21560839617}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\native_theme\native_theme.vcxproj">
       <Project>{7f1c34f0-c0b8-d4de-9181-31846ce57902}</Project>
     </ProjectReference>
@@ -336,12 +325,18 @@
     <ProjectReference Include="..\ui.vcxproj">
       <Project>{2b1084f0-ca11-ea66-0acd-15db70186f43}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\url\url_lib.vcxproj">
+      <Project>{389f0528-26df-53c7-3eaf-b21560839617}</Project>
+    </ProjectReference>
     <ProjectReference Include="views.vcxproj">
       <Project>{107d21f5-724c-d34d-6f26-e5f7ebc123fe}</Project>
     </ProjectReference>
     <ProjectReference Include="views_examples_lib.vcxproj">
       <Project>{debb414f-d9b1-fd72-b4f4-027cd13f9925}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="examples\mitunes_nonclient_frame_view.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\third_party\wtl\include;..;..;..\third_party\skia\src\core;..\skia\config;..\third_party\skia\include\config;..\third_party\skia\include\core;..\third_party\skia\include\effects;..\third_party\skia\include\pdf;..\third_party\skia\include\gpu;..\third_party\skia\include\lazy;..\third_party\skia\include\pathops;..\third_party\skia\include\pipe;..\third_party\skia\include\ports;..\third_party\skia\include\utils;..\skia\ext;..\third_party\icu\source\i18n;..\third_party\icu\source\common;..\third_party\libpng;..\third_party\zlib;$(OutDir)obj\global_intermediate\ui\app_locale_settings;$(OutDir)obj\global_intermediate\ui\ui_strings;$(OutDir)obj\global_intermediate\ui\ui_resources;..\third_party\libjpeg_turbo;C:\Program Files (x86)\Windows Kits\8.0\Include\shared;C:\Program Files (x86)\Windows Kits\8.0\Include\um;C:\Program Files (x86)\Windows Kits\8.0\Include\winrt;$(VSInstallDir)\VC\atlmfc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\third_party\wtl\include;..;..\third_party\skia\src\core;..\skia\config;..\third_party\skia\include\config;..\third_party\skia\include\core;..\third_party\skia\include\effects;..\third_party\skia\include\pdf;..\third_party\skia\include\gpu;..\third_party\skia\include\lazy;..\third_party\skia\include\pathops;..\third_party\skia\include\pipe;..\third_party\skia\include\ports;..\third_party\skia\include\utils;..\skia\ext;..\third_party\icu\source\i18n;..\third_party\icu\source\common;..\third_party\libpng;..\third_party\zlib;$(OutDir)obj\global_intermediate\ui\app_locale_settings;$(OutDir)obj\global_intermediate\ui\ui_strings;$(OutDir)obj\global_intermediate\ui\ui_resources;..\third_party\libjpeg_turbo;C:\Program Files (x86)\Windows Kits\8.0\Include\shared;C:\Program Files (x86)\Windows Kits\8.0\Include\um;C:\Program Files (x86)\Windows Kits\8.0\Include\winrt;$(VSInstallDir)\VC\atlmfc\include;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/MP /we4389 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
@@ -67,7 +67,7 @@
       <AdditionalLibraryDirectories>C:/Program Files (x86)/Windows Kits/8.0/Lib/win8/um/x86;lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
       <OutputFile>$(OutDir)lib\$(ProjectName)$(TargetExt)</OutputFile>
-      <AdditionalDependencies>libjpegd.lib;libpngd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libjpegd.lib;libpngd.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Link>
       <AdditionalDependencies>wininet.lib;dnsapi.lib;version.lib;msimg32.lib;ws2_32.lib;usp10.lib;psapi.lib;dbghelp.lib;winmm.lib;shlwapi.lib;d2d1.lib;d3d10_1.lib;dwmapi.lib;kernel32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;user32.lib;uuid.lib;odbc32.lib;odbccp32.lib;delayimp.lib</AdditionalDependencies>
@@ -153,7 +153,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\third_party\wtl\include;..;..;..\third_party\skia\src\core;..\skia\config;..\third_party\skia\include\config;..\third_party\skia\include\core;..\third_party\skia\include\effects;..\third_party\skia\include\pdf;..\third_party\skia\include\gpu;..\third_party\skia\include\lazy;..\third_party\skia\include\pathops;..\third_party\skia\include\pipe;..\third_party\skia\include\ports;..\third_party\skia\include\utils;..\skia\ext;..\third_party\icu\source\i18n;..\third_party\icu\source\common;..\third_party\libpng;..\third_party\zlib;$(OutDir)obj\global_intermediate\ui\app_locale_settings;$(OutDir)obj\global_intermediate\ui\ui_strings;$(OutDir)obj\global_intermediate\ui\ui_resources;..\third_party\libjpeg_turbo;C:\Program Files (x86)\Windows Kits\8.0\Include\shared;C:\Program Files (x86)\Windows Kits\8.0\Include\um;C:\Program Files (x86)\Windows Kits\8.0\Include\winrt;$(VSInstallDir)\VC\atlmfc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\third_party\wtl\include;..;..\third_party\skia\src\core;..\skia\config;..\third_party\skia\include\config;..\third_party\skia\include\core;..\third_party\skia\include\effects;..\third_party\skia\include\pdf;..\third_party\skia\include\gpu;..\third_party\skia\include\lazy;..\third_party\skia\include\pathops;..\third_party\skia\include\pipe;..\third_party\skia\include\ports;..\third_party\skia\include\utils;..\skia\ext;..\third_party\icu\source\i18n;..\third_party\icu\source\common;..\third_party\libpng;..\third_party\zlib;$(OutDir)obj\global_intermediate\ui\app_locale_settings;$(OutDir)obj\global_intermediate\ui\ui_strings;$(OutDir)obj\global_intermediate\ui\ui_resources;..\third_party\libjpeg_turbo;C:\Program Files (x86)\Windows Kits\8.0\Include\shared;C:\Program Files (x86)\Windows Kits\8.0\Include\um;C:\Program Files (x86)\Windows Kits\8.0\Include\winrt;$(VSInstallDir)\VC\atlmfc\include;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/MP /we4389 /Oy- %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -175,7 +175,7 @@
       <AdditionalLibraryDirectories>C:/Program Files (x86)/Windows Kits/8.0/Lib/win8/um/x86;lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
       <OutputFile>$(OutDir)lib\$(ProjectName)$(TargetExt)</OutputFile>
-      <AdditionalDependencies>libjpeg.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libjpeg.lib;libpng.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Link>
       <AdditionalDependencies>wininet.lib;dnsapi.lib;version.lib;msimg32.lib;ws2_32.lib;usp10.lib;psapi.lib;dbghelp.lib;winmm.lib;shlwapi.lib;d2d1.lib;d3d10_1.lib;dwmapi.lib;kernel32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;user32.lib;uuid.lib;odbc32.lib;odbccp32.lib;delayimp.lib</AdditionalDependencies>
@@ -404,6 +404,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="base\dragdrop\os_exchange_data_provider_win.h" />
     <ClInclude Include="gfx\gpu_memory_buffer.h" />
     <ClInclude Include="gfx\point_conversions.h" />
     <ClInclude Include="gfx\shadow_value.h" />
@@ -749,7 +750,6 @@
     <ClInclude Include="base\clipboard\clipboard.h" />
     <ClInclude Include="base\clipboard\clipboard_util_win.h" />
     <ClInclude Include="base\text\bytes_formatting.h" />
-    <ClInclude Include="base\dragdrop\os_exchange_data_provider_win.h" />
     <ClInclude Include="base\dragdrop\cocoa_dnd_util.h" />
     <ClInclude Include="base\dragdrop\drop_target_win.h" />
     <ClInclude Include="base\dragdrop\drag_source_win.h" />
@@ -850,8 +850,6 @@
     <ClInclude Include="base\accelerators\platform_accelerator_cocoa.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="webui\jstemplate_builder.h" />
-    <ClInclude Include="webui\web_ui_util.h" />
     <ClInclude Include="android\window_android.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
@@ -899,6 +897,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="base\dragdrop\os_exchange_data_provider_win.cc" />
     <ClCompile Include="gfx\render_text.cc" />
     <ClCompile Include="gfx\point_f.cc" />
     <ClCompile Include="gfx\display.cc" />
@@ -1201,7 +1200,6 @@
     <ClCompile Include="base\dragdrop\drop_target_win.cc" />
     <ClCompile Include="base\dragdrop\drag_utils.cc" />
     <ClCompile Include="base\dragdrop\os_exchange_data.cc" />
-    <ClCompile Include="base\dragdrop\os_exchange_data_provider_win.cc" />
     <ClCompile Include="base\dragdrop\drag_utils_win.cc" />
     <ClCompile Include="base\dragdrop\drag_drop_types_win.cc" />
     <ClCompile Include="base\dragdrop\drag_source_win.cc" />
@@ -1293,8 +1291,6 @@
     <ClCompile Include="base\accelerators\menu_label_accelerator_util_linux.cc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="webui\web_ui_util.cc" />
-    <ClCompile Include="webui\jstemplate_builder.cc" />
     <ClCompile Include="android\view_android.cc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1340,10 +1336,6 @@
   <ItemGroup>
     <ProjectReference Include="..\skia\skia.vcxproj">
       <Project>{8408CB4F-9AEE-8E8A-D822-7DD73F220C09}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="base\strings\ui_strings.vcxproj">
-      <Project>{A23B2896-8D6D-2601-BA5A-BECEDE5B3802}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="ui_resources.vcxproj">

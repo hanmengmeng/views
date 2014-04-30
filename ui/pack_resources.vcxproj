@@ -80,7 +80,7 @@
   <ItemGroup>
     <CustomBuild Include="resources\pack_ui_resources">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">call mkdir "$(OutDir)" 2&gt;nul &amp; set ERRORLEVEL=0 &amp; copy /Y "$(OutDir)obj\global_intermediate\ui\ui_resources\ui_resources_100_percent.pak" "$(OutDir)ui_resources.pak"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">call mkdir "$(OutDir)" 2&gt;nul &amp; set ERRORLEVEL=0 &amp; call .\resources\pack_resources.bat "$(OutDir)"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)ui_resources.pak</Outputs>
     </CustomBuild>
   </ItemGroup>

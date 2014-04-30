@@ -1250,16 +1250,20 @@ bool View::ExceededDragThreshold(const gfx::Vector2d& delta) {
 // Accessibility----------------------------------------------------------------
 
 gfx::NativeViewAccessible View::GetNativeViewAccessible() {
+#if 0
   if (!native_view_accessibility_)
     native_view_accessibility_ = NativeViewAccessibility::Create(this);
   if (native_view_accessibility_)
     return native_view_accessibility_->GetNativeObject();
+  return NULL;
+#endif
   return NULL;
 }
 
 void View::NotifyAccessibilityEvent(
     ui::AccessibilityTypes::Event event_type,
     bool send_native_event) {
+#if 0
   if (ViewsDelegate::views_delegate)
     ViewsDelegate::views_delegate->NotifyAccessibilityEvent(this, event_type);
 
@@ -1269,6 +1273,7 @@ void View::NotifyAccessibilityEvent(
     if (native_view_accessibility_)
       native_view_accessibility_->NotifyAccessibilityEvent(event_type);
   }
+#endif
 }
 
 // Scrolling -------------------------------------------------------------------

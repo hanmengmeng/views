@@ -41,6 +41,8 @@
 #include "ui/views/widget/widget_delegate.h"
 #include "ui/views/window/custom_frame_view.h"
 
+#include "mitunes_nonclient_frame_view.h"
+
 namespace views {
 namespace examples {
 
@@ -94,7 +96,7 @@ class ExamplesWindowContents : public WidgetDelegateView,
   // Overidden from WidgetDelegate
      virtual NonClientFrameView* CreateNonClientFrameView(Widget* widget) OVERRIDE
      {
-         CustomFrameView *custom_non_client_frame = new CustomFrameView;
+         MitunesFrameView *custom_non_client_frame = new MitunesFrameView;
          custom_non_client_frame->Init(widget);
          return custom_non_client_frame;
      }
@@ -220,11 +222,12 @@ void ShowExamplesWindow(Operation operation) {
     //                               gfx::Rect(0, 0, 850, 300))->Show();
       Widget* widget = new Widget;
       Widget::InitParams params;
-      params.bounds = gfx::Rect(0, 0, 850, 300);
+      params.bounds = gfx::Rect(0, 0, 900, 600);
       params.delegate = new ExamplesWindowContents(operation);
       params.top_level = true;
       params.remove_standard_frame = true;
       widget->Init(params);
+      widget->set_frame_type(Widget::FRAME_TYPE_FORCE_CUSTOM);
       widget->Show();
   }
 }

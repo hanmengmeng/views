@@ -69,6 +69,9 @@ class TableExample : public ExampleBase,
   SkBitmap icon1_;
   SkBitmap icon2_;
 
+  size_t row_count_;
+
+  ui::TableModelObserver *table_model_observer_;
   DISALLOW_COPY_AND_ASSIGN(TableExample);
 };
 

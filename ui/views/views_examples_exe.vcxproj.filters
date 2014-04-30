@@ -6,9 +6,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="views.gyp"/>
+    <None Include="views.gyp" />
     <ClCompile Include="examples\examples_main.cc">
       <Filter>examples</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="examples\mitunes_nonclient_frame_view.cpp">
+      <Filter>examples</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="examples\mitunes_nonclient_frame_view.h">
+      <Filter>examples</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

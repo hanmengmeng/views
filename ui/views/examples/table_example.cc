@@ -29,7 +29,7 @@ ui::TableColumn TestTableColumn(int id, const std::string& title) {
 
 }  // namespace
 
-TableExample::TableExample() : ExampleBase("Table") , table_(NULL) {
+TableExample::TableExample() : ExampleBase("Table") , table_(NULL), row_count_(10) {
 }
 
 TableExample::~TableExample() {
@@ -82,7 +82,7 @@ void TableExample::CreateExampleView(View* container) {
   ColumnSet* column_set = layout->AddColumnSet(0);
   column_set->AddColumn(GridLayout::FILL, GridLayout::FILL, 1,
                         GridLayout::USE_PREF, 0, 0);
-  layout->StartRow(1 /* expand */, 0);
+  layout->StartRow(0.8f /* expand */, 0);
   layout->AddView(table_->CreateParentIfNecessary());
 
   column_set = layout->AddColumnSet(1);
@@ -95,7 +95,7 @@ void TableExample::CreateExampleView(View* container) {
   column_set->AddColumn(GridLayout::FILL, GridLayout::FILL,
                         0.5f, GridLayout::USE_PREF, 0, 0);
 
-  layout->StartRow(0 /* no expand */, 1);
+  layout->StartRow(0.2f /* no expand */, 1);
 
   layout->AddView(column1_visible_checkbox_);
   layout->AddView(column2_visible_checkbox_);
@@ -104,7 +104,7 @@ void TableExample::CreateExampleView(View* container) {
 }
 
 int TableExample::RowCount() {
-  return 10;
+  return row_count_;
 }
 
 string16 TableExample::GetText(int row, int column_id) {
@@ -126,7 +126,10 @@ gfx::ImageSkia TableExample::GetIcon(int row) {
   return gfx::ImageSkia::CreateFrom1xBitmap(row_icon);
 }
 
-void TableExample::SetObserver(ui::TableModelObserver* observer) {}
+void TableExample::SetObserver(ui::TableModelObserver* observer) {
+    table_model_observer_ = observer;
+}
+
 
 void TableExample::GetGroupRange(int model_index, GroupRange* range) {
   if (model_index < 2) {
@@ -151,6 +154,9 @@ void TableExample::OnDoubleClick() {
   PrintStatus("Double Click: %s",
               UTF16ToASCII(GetText(table_->selection_model().active(),
                                    0)).c_str());
+  row_count_ = 5;
+  table_model_observer_->OnModelChanged();
+
 }
 
 void TableExample::OnMiddleClick() {}
