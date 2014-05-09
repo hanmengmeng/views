@@ -11,6 +11,7 @@
 #include "ui/views/controls/textfield/textfield.h"
 #include "ui/views/layout/grid_layout.h"
 #include "ui/views/view.h"
+#include "ui/views/controls/scroll_view.h"
 
 namespace views {
 namespace examples {
@@ -19,25 +20,37 @@ namespace examples {
 class MultilineExample::RenderTextView : public View {
  public:
   RenderTextView() : render_text_(gfx::RenderText::CreateInstance()) {
-    render_text_->SetHorizontalAlignment(gfx::ALIGN_CENTER);
+    render_text_->SetHorizontalAlignment(gfx::ALIGN_LEFT);
+    render_text_->SetVerticalAlignment(gfx::ALIGN_TOP);
     render_text_->SetColor(SK_ColorBLACK);
     render_text_->SetMultiline(true);
-    set_border(Border::CreateSolidBorder(2, SK_ColorGRAY));
+    render_text_->SetCursorEnabled(true);
+    //set_border(Border::CreateSolidBorder(2, SK_ColorGRAY));
+    set_border(Border::CreateEmptyBorder(5,5,5,5));
   }
 
   virtual void OnPaint(gfx::Canvas* canvas) OVERRIDE {
     View::OnPaint(canvas);
     render_text_->Draw(canvas);
+
+  }
+
+  virtual void Layout() OVERRIDE {
+      SizeToPreferredSize();
   }
 
   virtual gfx::Size GetPreferredSize() OVERRIDE {
     // Turn off multiline mode to get the single-line text size, which is the
     // preferred size for this view.
     render_text_->SetMultiline(false);
-    gfx::Size size(render_text_->GetContentWidth(),
-                   render_text_->GetStringSize().height());
-    size.Enlarge(GetInsets().width(), GetInsets().height());
+    int w = render_text_->GetContentWidth();
     render_text_->SetMultiline(true);
+    if (w > this->parent()->width()) {
+        w = this->parent()->width();
+    }
+    gfx::Size size(w, render_text_->GetStringSize().height());
+    size.Enlarge(GetInsets().width(), GetInsets().height());
+
     return size;
   }
 
@@ -59,11 +72,16 @@ class MultilineExample::RenderTextView : public View {
 
     render_text_->SetText(new_contents);
     render_text_->SetColor(SK_ColorBLACK);
-    render_text_->ApplyColor(0xFFFF0000, test_range);
+    //render_text_->ApplyColor(0xFFFF0000, test_range);
     render_text_->SetStyle(gfx::DIAGONAL_STRIKE, false);
-    render_text_->ApplyStyle(gfx::DIAGONAL_STRIKE, true, test_range);
+    //render_text_->ApplyStyle(gfx::DIAGONAL_STRIKE, true, test_range);
     render_text_->SetStyle(gfx::UNDERLINE, false);
-    render_text_->ApplyStyle(gfx::UNDERLINE, true, test_range);
+    //render_text_->ApplyStyle(gfx::UNDERLINE, true, test_range);
+    
+    render_text_->SetCursorEnabled(true);
+    render_text_->SetCursorPosition(0);
+        render_text_->SelectRange(test_range);
+        render_text_->set_focused(true);
     InvalidateLayout();
   }
 
@@ -91,11 +109,20 @@ MultilineExample::~MultilineExample() {
 }
 
 void MultilineExample::CreateExampleView(View* container) {
-  const char kTestString[] = "test string asdf 1234 test string asdf 1234 "
+  const char kTestString[] = "test string asdf 1234 test string asdf 1234 \r\n"
                              "test string asdf 1234 test string asdf 1234";
 
+#if 0
   render_text_view_ = new RenderTextView();
   render_text_view_->SetText(ASCIIToUTF16(kTestString));
+  render_text_view_scroll_ = new ScrollView;
+  render_text_view_scroll_->SetContents(render_text_view_);
+  //render_text_view_scroll_->SizeToPreferredSize();
+  render_text_view_scroll_->set_border(Border::CreateSolidBorder(2, SK_ColorGRAY));
+    //render_text_view_scroll_->SetBounds(0,0,600,400);
+#endif
+  text_edit_ = new TextEdit();
+  text_edit_->SetContent(ASCIIToUTF16(kTestString));
 
   label_ = new Label();
   label_->SetText(ASCIIToUTF16(kTestString));
@@ -118,26 +145,32 @@ void MultilineExample::CreateExampleView(View* container) {
   column_set->AddColumn(GridLayout::LEADING, GridLayout::CENTER,
       0.0f, GridLayout::USE_PREF, 0, 0);
   column_set->AddColumn(GridLayout::FILL, GridLayout::FILL,
-      1.0f, GridLayout::FIXED, 0, 0);
+      1.0f, GridLayout::USE_PREF, 0, 0);
 
-  layout->StartRow(0, 0);
+  layout->StartRow(0.2f, 0);
   layout->AddView(new Label(ASCIIToUTF16("gfx::RenderText:")));
-  layout->AddView(render_text_view_);
+  //layout->AddView(render_text_view_);
+  //layout->AddView(render_text_view_scroll_);
+  layout->AddView(text_edit_);
 
-  layout->StartRow(0, 0);
-  layout->AddView(label_checkbox_);
-  layout->AddView(label_);
+  //layout->StartRow(0, 0);
+  //layout->AddView(label_checkbox_);
+  //layout->AddView(label_);
 
-  layout->StartRow(0, 0);
+  layout->StartRowWithPadding(0.1f, 0, 0, 5);
+  //layout->StartRow(0.1f, 0);
   layout->AddView(new Label(ASCIIToUTF16("Sample Text:")));
   layout->AddView(textfield_);
 }
 
 void MultilineExample::ContentsChanged(Textfield* sender,
                                        const string16& new_contents) {
-  render_text_view_->SetText(new_contents);
+  //render_text_view_->SetText(new_contents);
+    text_edit_->SetContent(new_contents);
   if (label_checkbox_->checked())
     label_->SetText(new_contents);
+  //render_text_view_scroll_->Layout();
+  //render_text_view_scroll_->SizeToPreferredSize();
   container()->Layout();
   container()->SchedulePaint();
 }

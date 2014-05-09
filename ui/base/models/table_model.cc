@@ -4,7 +4,7 @@
 
 #include "ui/base/models/table_model.h"
 
-#include "base/i18n/string_compare.h"
+//#include "base/i18n/string_compare.h"
 #include "base/logging.h"
 #include "ui/base/l10n/l10n_util.h"
 #include "ui/gfx/image/image_skia.h"
@@ -36,7 +36,7 @@ TableColumn::TableColumn(int id, Alignment alignment, int width, float percent)
 // TableModel -----------------------------------------------------------------
 
 // Used for sorting.
-static icu::Collator* collator = NULL;
+//static icu::Collator* collator = NULL;
 
 gfx::ImageSkia TableModel::GetIcon(int row) {
   return gfx::ImageSkia();
@@ -73,20 +73,25 @@ int TableModel::CompareValues(int row1, int row2, int column_id) {
          row2 >= 0 && row2 < RowCount());
   base::string16 value1 = GetText(row1, column_id);
   base::string16 value2 = GetText(row2, column_id);
+#if 0 // NO_I18N
   icu::Collator* collator = GetCollator();
 
   if (collator)
     return base::i18n::CompareString16WithCollator(collator, value1, value2);
+#endif
 
-  NOTREACHED();
+  //NOTREACHED();
   return 0;
 }
 
 void TableModel::ClearCollator() {
+#if 0 // NO_I18N
   delete collator;
   collator = NULL;
+#endif
 }
 
+#if 0 // NO_I18N
 icu::Collator* TableModel::GetCollator() {
   if (!collator) {
     UErrorCode create_status = U_ZERO_ERROR;
@@ -98,5 +103,5 @@ icu::Collator* TableModel::GetCollator() {
   }
   return collator;
 }
-
+#endif
 }  // namespace ui

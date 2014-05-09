@@ -1,0 +1,7 @@
+ui\gfx\text_elider.cc
+ui\gfx\text_elider.h
+
+#if 0 // NO_I18N
+
+
+#if 0 // TODO

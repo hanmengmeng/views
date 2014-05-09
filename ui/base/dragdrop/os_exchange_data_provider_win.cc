@@ -908,7 +908,9 @@ static void CreateValidFileNameFromTitle(const GURL& url,
     }
   } else {
     *validated = title;
+#if 0 // NO_I18N
     file_util::ReplaceIllegalCharactersInPath(validated, '-');
+#endif
   }
   static const wchar_t extension[] = L".url";
   static const size_t max_length = MAX_PATH - arraysize(extension);

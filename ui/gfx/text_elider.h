@@ -12,8 +12,10 @@
 
 #include "base/basictypes.h"
 #include "base/strings/string16.h"
+#if 0 // NO_I18N
 #include "third_party/icu/source/common/unicode/uchar.h"
 #include "third_party/icu/source/i18n/unicode/coll.h"
+#endif
 #include "ui/gfx/gfx_export.h"
 
 class GURL;

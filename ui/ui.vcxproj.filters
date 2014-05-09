@@ -175,6 +175,9 @@
     <Filter Include="events\keycodes\_excluded_files">
       <UniqueIdentifier>{158E591E-B6EA-0C85-8F5A-18EAFA09B4CE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="base\url">
+      <UniqueIdentifier>{9881d4ad-31de-4593-950a-b6f79c5be946}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ui.gyp" />
@@ -388,9 +391,6 @@
     <ClInclude Include="gfx\sys_color_change_listener.h">
       <Filter>gfx</Filter>
     </ClInclude>
-    <ClInclude Include="gfx\text_elider.h">
-      <Filter>gfx</Filter>
-    </ClInclude>
     <ClCompile Include="gfx\transform.cc">
       <Filter>gfx</Filter>
     </ClCompile>
@@ -521,9 +521,6 @@
       <Filter>gfx</Filter>
     </ClCompile>
     <ClCompile Include="gfx\vector3d_f.cc">
-      <Filter>gfx</Filter>
-    </ClCompile>
-    <ClCompile Include="gfx\text_elider.cc">
       <Filter>gfx</Filter>
     </ClCompile>
     <ClInclude Include="gfx\path_win.h">
@@ -1141,12 +1138,6 @@
     <ClInclude Include="base\l10n\l10n_util.h">
       <Filter>base\l10n</Filter>
     </ClInclude>
-    <ClInclude Include="base\l10n\l10n_util_plurals.h">
-      <Filter>base\l10n</Filter>
-    </ClInclude>
-    <ClInclude Include="base\l10n\time_format.h">
-      <Filter>base\l10n</Filter>
-    </ClInclude>
     <ClCompile Include="base\l10n\l10n_font_util.cc">
       <Filter>base\l10n</Filter>
     </ClCompile>
@@ -1156,18 +1147,12 @@
     <ClInclude Include="base\l10n\l10n_util_win.h">
       <Filter>base\l10n</Filter>
     </ClInclude>
-    <ClCompile Include="base\l10n\time_format.cc">
-      <Filter>base\l10n</Filter>
-    </ClCompile>
     <ClCompile Include="base\l10n\l10n_util.cc">
       <Filter>base\l10n</Filter>
     </ClCompile>
     <ClInclude Include="base\l10n\l10n_util_android.h">
       <Filter>base\l10n</Filter>
     </ClInclude>
-    <ClCompile Include="base\l10n\l10n_util_plurals.cc">
-      <Filter>base\l10n</Filter>
-    </ClCompile>
     <ClInclude Include="base\l10n\l10n_util_mac.h">
       <Filter>base\l10n\_excluded_files</Filter>
     </ClInclude>
@@ -2010,10 +1995,34 @@
     <ClCompile Include="base\dragdrop\os_exchange_data_provider_win.cc">
       <Filter>base\dragdrop</Filter>
     </ClCompile>
+    <ClCompile Include="gfx\text_elider.cc">
+      <Filter>gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="base\url\url_parse.cc">
+      <Filter>base\url</Filter>
+    </ClCompile>
+    <ClCompile Include="base\url\gurl.cc">
+      <Filter>base\url</Filter>
+    </ClCompile>
+    <ClCompile Include="base\text\break_iterator.cpp">
+      <Filter>base\text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\dragdrop\os_exchange_data_provider_win.h">
       <Filter>base\dragdrop</Filter>
+    </ClInclude>
+    <ClInclude Include="gfx\text_elider.h">
+      <Filter>gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="base\url\url_parse.h">
+      <Filter>base\url</Filter>
+    </ClInclude>
+    <ClInclude Include="base\url\gurl.h">
+      <Filter>base\url</Filter>
+    </ClInclude>
+    <ClInclude Include="base\text\break_iterator.h">
+      <Filter>base\text</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

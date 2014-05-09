@@ -807,7 +807,9 @@ void Widget::UpdateWindowTitle() {
   // Update the native frame's text. We do this regardless of whether or not
   // the native frame is being used, since this also updates the taskbar, etc.
   string16 window_title = widget_delegate_->GetWindowTitle();
+#if 0 // NO_I18N
   base::i18n::AdjustStringForLocaleDirection(&window_title);
+#endif
   native_widget_->SetWindowTitle(window_title);
   non_client_view_->UpdateWindowTitle();
 

@@ -418,10 +418,12 @@ void TooltipController::TrimTooltipToFit(int max_width,
 
   // Clamp number of lines to |kMaxLines|.
   if (result_lines.size() > kMaxLines) {
+#if 0 // NO_I18N
     result_lines.resize(kMaxLines);
     // Add ellipses character to last line.
     result_lines[kMaxLines - 1] = gfx::TruncateString(
         result_lines.back(), result_lines.back().length() - 1);
+#endif
   }
   *line_count = result_lines.size();
 

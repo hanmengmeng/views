@@ -11,8 +11,14 @@
 
 #include "base/i18n/base_i18n_export.h"
 #include "base/strings/string16.h"
+#if 0 // NO_I18N
 #include "third_party/icu/source/i18n/unicode/coll.h"
+#endif
 
+namespace icu
+{
+class Collator;
+}
 namespace base {
 namespace i18n {
 

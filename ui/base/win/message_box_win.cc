@@ -25,11 +25,15 @@ int MessageBox(HWND hwnd,
     actual_flags |= MB_RIGHT | MB_RTLREADING;
 
   string16 localized_text = text;
+#if 0 // NO_I18N
   base::i18n::AdjustStringForLocaleDirection(&localized_text);
+#endif
   const wchar_t* text_ptr = localized_text.c_str();
 
   string16 localized_caption = caption;
+#if 0 // NO_I18N
   base::i18n::AdjustStringForLocaleDirection(&localized_caption);
+#endif
   const wchar_t* caption_ptr = localized_caption.c_str();
 
   return ::MessageBox(hwnd, text_ptr, caption_ptr, actual_flags);

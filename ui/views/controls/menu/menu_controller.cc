@@ -94,8 +94,11 @@ bool MatchesMnemonic(MenuItemView* menu, char16 key) {
 bool TitleMatchesMnemonic(MenuItemView* menu, char16 key) {
   if (menu->GetMnemonic())
     return false;
-
+#if 0 // NO_I18N
   string16 lower_title = base::i18n::ToLower(menu->title());
+#else
+  string16 lower_title = menu->title();
+#endif
   return !lower_title.empty() && lower_title[0] == key;
 }
 
@@ -2076,7 +2079,11 @@ bool MenuController::AcceptOrSelect(MenuItemView* parent,
 
 bool MenuController::SelectByChar(char16 character) {
   char16 char_array[] = { character, 0 };
+#if 0 // NO_I18N
   char16 key = base::i18n::ToLower(char_array)[0];
+#else
+  char16 key = char_array[0];
+#endif
   MenuItemView* item = pending_state_.item;
   if (!item->HasSubmenu() || !item->GetSubmenu()->IsShowing())
     item = item->GetParentMenuItem();

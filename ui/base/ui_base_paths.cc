@@ -35,7 +35,7 @@ bool PathProvider(int key, base::FilePath* result) {
       if (!PathService::Get(ui::DIR_RESOURCE_PAKS_ANDROID, &cur))
         return false;
 #else
-      cur = cur.Append(FILE_PATH_LITERAL("locales"));
+      //cur = cur.Append(FILE_PATH_LITERAL("locales"));
 #endif
       create_dir = true;
       break;

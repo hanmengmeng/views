@@ -162,7 +162,9 @@ void PrefixSelector::OnTextInput(const string16& text) {
   time_of_last_key_ = now;
 
   const int start_row = row;
+#if 0 // NO_I18N
   const string16 lower_text(base::i18n::ToLower(current_text_));
+#endif
   do {
     if (TextAtRowMatchesText(row, current_text_)) {
       prefix_delegate_->SetSelectedRow(row);
@@ -174,8 +176,12 @@ void PrefixSelector::OnTextInput(const string16& text) {
 
 bool PrefixSelector::TextAtRowMatchesText(int row,
                                           const string16& lower_text) {
+#if 0 // NO_I18N
   const string16 model_text(
       base::i18n::ToLower(prefix_delegate_->GetTextForRow(row)));
+#else
+  const string16 model_text = prefix_delegate_->GetTextForRow(row);
+#endif
   return (model_text.size() >= lower_text.size()) &&
       (model_text.compare(0, lower_text.size(), lower_text) == 0);
 }

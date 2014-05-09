@@ -31,7 +31,7 @@ bool AdjustStringDirection(int flags, base::string16* text) {
   // default RenderText directionality is already LTR.
   if (text->empty() || (flags & Canvas::FORCE_LTR_DIRECTIONALITY))
     return false;
-
+#if 0 // NO_I18N
   // If RTL is forced, apply it to the string.
   if (flags & Canvas::FORCE_RTL_DIRECTIONALITY) {
     base::i18n::WrapStringWithRTLFormatting(text);
@@ -44,7 +44,7 @@ bool AdjustStringDirection(int flags, base::string16* text) {
     base::i18n::WrapStringWithRTLFormatting(text);
     return true;
   }
-
+#endif
   // In the default case, the string should be rendered as LTR. RenderText's
   // default directionality is LTR, so the text doesn't need to be wrapped.
   // Note that individual runs within the string may still be rendered RTL

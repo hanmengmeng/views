@@ -440,6 +440,7 @@ int Label::ComputeDrawStringFlags() const {
   if (SkColorGetA(background_color_) != 0xFF)
     flags |= gfx::Canvas::NO_SUBPIXEL_RENDERING;
 
+#if 0 // NO_I18N
   if (directionality_mode_ == AUTO_DETECT_DIRECTIONALITY) {
     base::i18n::TextDirection direction =
         base::i18n::GetFirstStrongCharacterDirection(text_);
@@ -448,6 +449,9 @@ int Label::ComputeDrawStringFlags() const {
     else
       flags |= gfx::Canvas::FORCE_LTR_DIRECTIONALITY;
   }
+#else
+  flags |= gfx::Canvas::FORCE_LTR_DIRECTIONALITY;
+#endif
 
   switch (horizontal_alignment_) {
     case gfx::ALIGN_LEFT:

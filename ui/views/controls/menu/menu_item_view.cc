@@ -509,7 +509,11 @@ char16 MenuItemView::GetMnemonic() {
         // If the mnemonic is capital I and the UI language is Turkish,
         // lowercasing it results in 'small dotless i', which is different
         // from a 'dotted i'. Similar issues may exist for az and lt locales.
+#if 0 // NO_I18N
         return base::i18n::ToLower(char_array)[0];
+#else
+    return char_array[0];
+#endif
       }
       index++;
     }

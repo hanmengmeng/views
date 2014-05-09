@@ -178,11 +178,15 @@ void MessageBoxView::Init(const InitParams& params) {
     SplitStringIntoParagraphs(params.message, &texts);
     // If the text originates from a web page, its alignment is based on its
     // first character with strong directionality.
+#if 0 // NO_I18N
     base::i18n::TextDirection message_direction =
         base::i18n::GetFirstStrongCharacterDirection(params.message);
     gfx::HorizontalAlignment alignment =
         (message_direction == base::i18n::RIGHT_TO_LEFT) ?
         gfx::ALIGN_RIGHT : gfx::ALIGN_LEFT;
+#else
+    gfx::HorizontalAlignment alignment = gfx::ALIGN_LEFT;
+#endif
     for (size_t i = 0; i < texts.size(); ++i) {
       Label* message_label = new Label(texts[i]);
       // Don't set multi-line to true if the text is empty, else the label will

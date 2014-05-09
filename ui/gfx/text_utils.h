@@ -29,4 +29,33 @@ UI_EXPORT int GetStringWidth(const base::string16& text,
 
 }  // namespace gfx
 
+//#if 0 // NO_I18N
+typedef int UChar32;
+#define U16_IS_TRAIL(c) (((c)&0xfffffc00)==0xdc00)
+#define U16_IS_LEAD(c) (((c)&0xfffffc00)==0xd800)
+
+#define U16_SET_CP_START(s, start, i) { \
+    if(U16_IS_TRAIL((s)[i]) && (i)>(start) && U16_IS_LEAD((s)[(i)-1])) { \
+    --(i); \
+    } \
+}
+#define U16_SET_CP_LIMIT(s, start, i, length) { \
+    if((start)<(i) && (i)<(length) && U16_IS_LEAD((s)[(i)-1]) && U16_IS_TRAIL((s)[i])) { \
+    ++(i); \
+    } \
+}
+#define U16_SURROGATE_OFFSET ((0xd800<<10UL)+0xdc00-0x10000)
+#define U16_GET_SUPPLEMENTARY(lead, trail) \
+    (((UChar32)(lead)<<10UL)+(UChar32)(trail)-U16_SURROGATE_OFFSET)
+#define U16_NEXT(s, i, length, c) { \
+    (c)=(s)[(i)++]; \
+    if(U16_IS_LEAD(c)) { \
+    uint16_t __c2; \
+    if((i)<(length) && U16_IS_TRAIL(__c2=(s)[(i)])) { \
+    ++(i); \
+    (c)=U16_GET_SUPPLEMENTARY((c), __c2); \
+    } \
+    } \
+}
+
 #endif  // UI_GFX_TEXT_UTILS_H_

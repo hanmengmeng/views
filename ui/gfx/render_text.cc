@@ -9,8 +9,10 @@
 #include "base/i18n/break_iterator.h"
 #include "base/logging.h"
 #include "base/stl_util.h"
+#if 0 // NO_I18N
 #include "third_party/icu/source/common/unicode/rbbi.h"
 #include "third_party/icu/source/common/unicode/utf16.h"
+#endif
 #include "third_party/skia/include/core/SkTypeface.h"
 #include "third_party/skia/include/effects/SkGradientShader.h"
 #include "ui/gfx/canvas.h"
@@ -19,6 +21,8 @@
 #include "ui/gfx/text_constants.h"
 #include "ui/gfx/text_elider.h"
 #include "ui/gfx/utf16_indexing.h"
+#include "ui/gfx/text_utils.h"
+#include "ui/base/text/break_iterator.h"
 
 namespace gfx {
 
@@ -508,7 +512,9 @@ void RenderText::SelectWord() {
 
   size_t selection_max = selection().GetMax();
 
-  base::i18n::BreakIterator iter(text(), base::i18n::BreakIterator::BREAK_WORD);
+  //#if 0 // NO_I18N
+  //base::i18n::BreakIterator iter(text(), base::i18n::BreakIterator::BREAK_WORD);
+  ui::BreakIterator iter(text(), ui::BreakIterator::BREAK_WORD);
   bool success = iter.Init();
   DCHECK(success);
   if (!success)
@@ -613,6 +619,7 @@ void RenderText::SetDirectionalityMode(DirectionalityMode mode) {
 }
 
 base::i18n::TextDirection RenderText::GetTextDirection() {
+#if 0 // NO_I18N
   if (text_direction_ == base::i18n::UNKNOWN_DIRECTION) {
     switch (directionality_mode_) {
       case DIRECTIONALITY_FROM_TEXT:
@@ -635,7 +642,8 @@ base::i18n::TextDirection RenderText::GetTextDirection() {
         NOTREACHED();
     }
   }
-
+#endif
+  text_direction_ = base::i18n::LEFT_TO_RIGHT;
   return text_direction_;
 }
 
@@ -778,7 +786,11 @@ void RenderText::SetTextShadows(const ShadowValues& shadows) {
 }
 
 RenderText::RenderText()
+#if 0 // NO_I18N
     : horizontal_alignment_(base::i18n::IsRTL() ? ALIGN_RIGHT : ALIGN_LEFT),
+#else
+    : horizontal_alignment_(ALIGN_LEFT),
+#endif
       vertical_alignment_(ALIGN_VCENTER),
       directionality_mode_(DIRECTIONALITY_FROM_TEXT),
       text_direction_(base::i18n::UNKNOWN_DIRECTION),
@@ -848,8 +860,10 @@ const BreakList<size_t>& RenderText::GetLineBreaks() {
   const size_t text_length = layout_text.length();
   line_breaks_.SetValue(0);
   line_breaks_.SetMax(text_length);
-  base::i18n::BreakIterator iter(layout_text,
-                                 base::i18n::BreakIterator::BREAK_LINE);
+  //#if 0 // NO_I18N
+  //base::i18n::BreakIterator iter(layout_text,
+  //                               base::i18n::BreakIterator::BREAK_LINE);
+  ui::BreakIterator iter(layout_text, ui::BreakIterator::BREAK_LINE);
   const bool success = iter.Init();
   DCHECK(success);
   if (success) {
@@ -1071,10 +1085,12 @@ void RenderText::UpdateLayoutText() {
 
   const base::string16& text = obscured_ ? layout_text_ : text_;
   if (truncate_length_ > 0 && truncate_length_ < text.length()) {
+#if 0 // NO_I18N
     // Truncate the text at a valid character break and append an ellipsis.
     icu::StringCharacterIterator iter(text.c_str());
     iter.setIndex32(truncate_length_ - 1);
     layout_text_.assign(text.substr(0, iter.getIndex()) + gfx::kEllipsisUTF16);
+#endif
   }
 }
 
