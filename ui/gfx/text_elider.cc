@@ -24,11 +24,14 @@
 //#include "net/base/escape.h"
 //#include "net/base/net_util.h"
 //#include "net/base/registry_controlled_domains/registry_controlled_domain.h"
+#if 0 // NO_I18N
 #include "third_party/icu/source/common/unicode/rbbi.h"
 #include "third_party/icu/source/common/unicode/uloc.h"
+#endif
 #include "ui/gfx/font_list.h"
 #include "ui/gfx/text_utils.h"
 #include "url/gurl.h"
+#include "ui/base/text/break_iterator.h"
 
 namespace gfx {
 
@@ -415,6 +418,8 @@ string16 ElideUrl(const GURL& url,
   return ElideUrl(url, gfx::FontList(font), available_pixel_width, languages);
 }
 #endif
+
+#if 0 // NO_I18N
 string16 ElideFilename(const base::FilePath& filename,
                        const gfx::FontList& font_list,
                        int available_pixel_width) {
@@ -469,7 +474,7 @@ string16 ElideFilename(const base::FilePath& filename,
                        int available_pixel_width) {
   return ElideFilename(filename, gfx::FontList(font), available_pixel_width);
 }
-
+#endif
 string16 ElideText(const string16& text,
                    const gfx::FontList& font_list,
                    int available_pixel_width,
@@ -645,6 +650,7 @@ bool ElideString(const string16& input, int max_len, string16* output) {
 
 namespace {
 
+#if 0 // NO_I18N
 // Internal class used to track progress of a rectangular string elide
 // operation.  Exists so the top-level ElideRectangleString() function
 // can be broken into smaller methods sharing this state.
@@ -804,6 +810,7 @@ void RectangleString::NewLine(bool output) {
   ++current_row_;
   current_col_ = 0;
 }
+#endif
 
 // Internal class used to track progress of a rectangular text elide
 // operation.  Exists so the top-level ElideRectangleText() function
@@ -909,8 +916,9 @@ class RectangleText {
 };
 
 void RectangleText::AddString(const string16& input) {
-  base::i18n::BreakIterator lines(input,
-                                  base::i18n::BreakIterator::BREAK_NEWLINE);
+// #if 0 // NO_I18N
+  //base::i18n::BreakIterator lines(input, base::i18n::BreakIterator::BREAK_NEWLINE);
+    ui::BreakIterator lines(input, ui::BreakIterator::BREAK_NEWLINE);
   if (lines.Init()) {
     while (!insufficient_height_ && lines.Advance()) {
       string16 line = lines.GetString();
@@ -948,8 +956,9 @@ void RectangleText::AddLine(const string16& line) {
   } else {
     // Iterate over positions that are valid to break the line at. In general,
     // these are word boundaries but after any punctuation following the word.
-    base::i18n::BreakIterator words(line,
-                                    base::i18n::BreakIterator::BREAK_LINE);
+      //#if 0 // NO_I18N
+    //base::i18n::BreakIterator words(line, base::i18n::BreakIterator::BREAK_LINE);
+    ui::BreakIterator words(line, ui::BreakIterator::BREAK_LINE);
     if (words.Init()) {
       while (words.Advance()) {
         const bool truncate = !current_line_.empty();
@@ -1072,7 +1081,7 @@ bool RectangleText::NewLine() {
 }
 
 }  // namespace
-
+#if 0 // NO_I18N
 bool ElideRectangleString(const string16& input, size_t max_rows,
                           size_t max_cols, bool strict, string16* output) {
   RectangleString rect(max_rows, max_cols, strict, output);
@@ -1080,7 +1089,7 @@ bool ElideRectangleString(const string16& input, size_t max_rows,
   rect.AddString(input);
   return rect.Finalize();
 }
-
+#endif
 int ElideRectangleText(const string16& input,
                        const gfx::FontList& font_list,
                        int available_pixel_width,
@@ -1107,7 +1116,7 @@ int ElideRectangleText(const string16& input,
                             available_pixel_width, available_pixel_height,
                             wrap_behavior, lines);
 }
-
+#if 0 // NO_I18N
 string16 TruncateString(const string16& string, size_t length) {
   if (string.size() <= length)
     // String fits, return it.
@@ -1169,5 +1178,5 @@ string16 TruncateString(const string16& string, size_t length) {
   }
   return string.substr(0, index) + kElideString;
 }
-
+#endif
 }  // namespace gfx

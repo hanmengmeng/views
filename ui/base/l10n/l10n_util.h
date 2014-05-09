@@ -19,6 +19,15 @@
 #include "ui/base/l10n/l10n_util_mac.h"
 #endif  // OS_MACOSX
 
+//#if 0 // NO_I18N
+namespace base
+{
+namespace i18n
+{
+bool IsRTL();
+}
+}
+
 namespace l10n_util {
 
 // This method is responsible for determining the locale as defined below. In

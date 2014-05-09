@@ -282,21 +282,14 @@
     <None Include="views.gyp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\custom\render_text_view.cpp" />
+    <ClCompile Include="..\custom\text_edit.cpp" />
     <ClCompile Include="examples\examples_main.cc" />
     <ClCompile Include="examples\mitunes_nonclient_frame_view.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\base\base.vcxproj">
       <Project>{d6e64011-bd61-065d-240b-b26b2606ad74}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\base\base_i18n.vcxproj">
-      <Project>{729ce7d8-e92f-66c3-2539-b9b8a053aa75}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\base\base_static.vcxproj">
-      <Project>{2209ed79-c1e5-beed-df7f-7ea66c3f67de}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\base\third_party\dynamic_annotations\dynamic_annotations.vcxproj">
-      <Project>{5ebaeaac-ac88-a1ec-5ae4-a7182b110344}</Project>
     </ProjectReference>
     <ProjectReference Include="..\native_theme\native_theme.vcxproj">
       <Project>{7f1c34f0-c0b8-d4de-9181-31846ce57902}</Project>
@@ -307,9 +300,6 @@
     <ProjectReference Include="..\ui.vcxproj">
       <Project>{2b1084f0-ca11-ea66-0acd-15db70186f43}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\url\url_lib.vcxproj">
-      <Project>{389f0528-26df-53c7-3eaf-b21560839617}</Project>
-    </ProjectReference>
     <ProjectReference Include="views.vcxproj">
       <Project>{107d21f5-724c-d34d-6f26-e5f7ebc123fe}</Project>
     </ProjectReference>
@@ -318,6 +308,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\custom\render_text_view.h" />
+    <ClInclude Include="..\custom\text_edit.h" />
     <ClInclude Include="examples\mitunes_nonclient_frame_view.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

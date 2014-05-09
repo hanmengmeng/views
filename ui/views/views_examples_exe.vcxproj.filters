@@ -15,9 +15,21 @@
     <ClCompile Include="examples\mitunes_nonclient_frame_view.cpp">
       <Filter>examples</Filter>
     </ClCompile>
+    <ClCompile Include="..\custom\text_edit.cpp">
+      <Filter>examples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom\render_text_view.cpp">
+      <Filter>examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="examples\mitunes_nonclient_frame_view.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\text_edit.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\render_text_view.h">
       <Filter>examples</Filter>
     </ClInclude>
   </ItemGroup>

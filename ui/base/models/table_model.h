@@ -8,7 +8,9 @@
 #include <vector>
 
 #include "base/strings/string16.h"
+#if 0 // NO_I18N
 #include "third_party/icu/source/i18n/unicode/coll.h"
+#endif
 #include "ui/base/ui_export.h"
 
 namespace gfx {
@@ -87,7 +89,9 @@ class UI_EXPORT TableModel {
   virtual ~TableModel() {}
 
   // Returns the collator used by CompareValues.
+#if 0 // NO_I18N
   icu::Collator* GetCollator();
+#endif
 };
 
 // TableColumn specifies the title, alignment and size of a particular column.

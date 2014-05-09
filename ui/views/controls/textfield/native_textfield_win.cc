@@ -175,16 +175,23 @@ string16 NativeTextfieldWin::GetText() const {
   // not be displayed correctly in a textfield. For example, "Yahoo!" will be
   // displayed as "!Yahoo", and "Google (by default)" will be displayed as
   // "(Google (by default".
+#if 0 // NO_I18N
   return base::i18n::StripWrappingBidiControlCharacters(str);
+#else
+  return str;
+#endif
 }
 
 void NativeTextfieldWin::UpdateText() {
   string16 text = textfield_->text();
   // Adjusting the string direction before setting the text in order to make
   // sure both RTL and LTR strings are displayed properly.
+#if 0 // NO_I18N
   base::i18n::AdjustStringForLocaleDirection(&text);
+
   if (textfield_->style() & Textfield::STYLE_LOWERCASE)
     text = base::i18n::ToLower(text);
+#endif
   SetWindowText(text.c_str());
   UpdateAccessibleValue(text);
 }
@@ -1059,8 +1066,10 @@ void NativeTextfieldWin::OnPaste() {
   clipboard->ReadText(ui::Clipboard::BUFFER_STANDARD, &clipboard_str);
   if (!clipboard_str.empty()) {
     string16 collapsed(CollapseWhitespace(clipboard_str, false));
+#if 0 // NO_I18N
     if (textfield_->style() & Textfield::STYLE_LOWERCASE)
       collapsed = base::i18n::ToLower(collapsed);
+#endif
     // Force a Paste operation to trigger ContentsChanged, even if identical
     // contents are pasted into the text box. See http://crbug.com/79002
     ReplaceSel(L"", false);
@@ -1218,8 +1227,12 @@ LONG NativeTextfieldWin::ClipXCoordToVisibleText(LONG x,
   // layout is RTL layout, or if there is RTL characters inside the LTR layout
   // paragraph.
   bool ltr_text_in_ltr_layout = true;
+#if 0 // NO_I18N
   if ((pf2.wEffects & PFE_RTLPARA) ||
       base::i18n::StringContainsStrongRTLChars(GetText())) {
+#else
+  if (pf2.wEffects & PFE_RTLPARA) {
+#endif
     ltr_text_in_ltr_layout = false;
   }
   const int length = GetTextLength();

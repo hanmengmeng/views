@@ -12,6 +12,7 @@ base::string16 RemoveAcceleratorChar(const base::string16& s,
                                      base::char16 accelerator_char,
                                      int* accelerated_char_pos,
                                      int* accelerated_char_span) {
+#if 0 // NO_I18N
   bool escaped = false;
   ptrdiff_t last_char_pos = -1;
   int last_char_span = 0;
@@ -44,6 +45,10 @@ base::string16 RemoveAcceleratorChar(const base::string16& s,
     *accelerated_char_span = last_char_span;
 
   return accelerator_removed;
+#endif
+  *accelerated_char_pos = -1;
+  *accelerated_char_span = 0;
+  return s;
 }
 
 }  // namespace gfx

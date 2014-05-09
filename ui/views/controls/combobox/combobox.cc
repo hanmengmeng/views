@@ -343,11 +343,11 @@ void Combobox::UpdateFromModel() {
     }
 
     string16 text = model()->GetItemAt(i);
-
+#if 0 // NO_I18N
     // Inserting the Unicode formatting characters if necessary so that the
     // text is displayed correctly in right-to-left UIs.
     base::i18n::AdjustStringForLocaleDirection(&text);
-
+#endif
     menu->AppendMenuItem(i + kFirstMenuItemId, text, MenuItemView::NORMAL);
     max_width = std::max(max_width, font.GetStringWidth(text));
   }

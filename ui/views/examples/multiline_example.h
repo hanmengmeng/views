@@ -10,6 +10,7 @@
 #include "ui/views/controls/button/checkbox.h"
 #include "ui/views/controls/textfield/textfield_controller.h"
 #include "ui/views/examples/example_base.h"
+#include "ui/custom/text_edit.h"
 
 namespace views {
 
@@ -41,8 +42,11 @@ class MultilineExample : public ExampleBase,
                               const ui::KeyEvent& key_event) OVERRIDE;
 
   RenderTextView* render_text_view_;
+  ScrollView *render_text_view_scroll_;
   Label* label_;
   Textfield* textfield_;
+
+  TextEdit *text_edit_;
 
   // Checkbox to enable and disable text rendering in |label_|.
   Checkbox* label_checkbox_;

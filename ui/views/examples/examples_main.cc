@@ -10,6 +10,7 @@
 #include "base/run_loop.h"
 #include "ui/base/win/scoped_ole_initializer.h"
 #include "ui/base/ui_base_paths.h"
+#include "ui/base/clipboard/clipboard.h"
 
 int APIENTRY wWinMain(HINSTANCE instance, HINSTANCE, wchar_t*, int) {
     base::AtExitManager exit_manager;
@@ -17,7 +18,7 @@ int APIENTRY wWinMain(HINSTANCE instance, HINSTANCE, wchar_t*, int) {
     char** argv = NULL;
     CommandLine::Init(argc, argv);
 
-    base::i18n::InitializeICU();
+    //base::i18n::InitializeICU();
     scoped_ptr<ui::ScopedOleInitializer> ole_initializer;
     ole_initializer.reset(new ui::ScopedOleInitializer);
 
@@ -29,5 +30,7 @@ int APIENTRY wWinMain(HINSTANCE instance, HINSTANCE, wchar_t*, int) {
 
     base::RunLoop run_loop;
     run_loop.Run();
+
+    ui::Clipboard::DestroyClipboardForCurrentThread();
   return 0;
 }

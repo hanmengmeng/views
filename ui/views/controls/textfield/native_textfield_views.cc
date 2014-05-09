@@ -14,8 +14,10 @@
 #include "base/message_loop/message_loop.h"
 #include "base/strings/utf_string_conversions.h"
 #include "grit/ui_strings.h"
+#if 0 // NO_I18N
 #include "third_party/icu/source/common/unicode/uchar.h"
 #include "third_party/skia/include/core/SkColor.h"
+#endif
 #include "ui/base/clipboard/clipboard.h"
 #include "ui/base/dragdrop/drag_drop_types.h"
 #include "ui/base/dragdrop/drag_utils.h"
@@ -1125,8 +1127,12 @@ gfx::RenderText* NativeTextfieldViews::GetRenderText() const {
 }
 
 string16 NativeTextfieldViews::GetTextForDisplay(const string16& text) {
+#if 0 // NO_I18N
   return textfield_->style() & Textfield::STYLE_LOWERCASE ?
       base::i18n::ToLower(text) : text;
+#else
+  return text;
+#endif
 }
 
 void NativeTextfieldViews::UpdateColorsFromTheme(const ui::NativeTheme* theme) {

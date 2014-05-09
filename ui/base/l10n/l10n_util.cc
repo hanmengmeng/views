@@ -12,9 +12,9 @@
 #include "base/command_line.h"
 #include "base/compiler_specific.h"
 #include "base/file_util.h"
-#include "base/i18n/file_util_icu.h"
-#include "base/i18n/rtl.h"
-#include "base/i18n/string_compare.h"
+//#include "base/i18n/file_util_icu.h"
+//#include "base/i18n/rtl.h"
+//#include "base/i18n/string_compare.h"
 #include "base/lazy_instance.h"
 #include "base/memory/scoped_ptr.h"
 #include "base/path_service.h"
@@ -25,10 +25,10 @@
 #include "base/strings/sys_string_conversions.h"
 #include "base/strings/utf_string_conversions.h"
 #include "build/build_config.h"
-#include "third_party/icu/source/common/unicode/rbbi.h"
-#include "third_party/icu/source/common/unicode/uloc.h"
-#include "ui/base/l10n/l10n_util_collator.h"
-#include "ui/base/l10n/l10n_util_plurals.h"
+//#include "third_party/icu/source/common/unicode/rbbi.h"
+//#include "third_party/icu/source/common/unicode/uloc.h"
+//#include "ui/base/l10n/l10n_util_collator.h"
+//#include "ui/base/l10n/l10n_util_plurals.h"
 #include "ui/base/resource/resource_bundle.h"
 #include "ui/base/ui_base_paths.h"
 
@@ -225,8 +225,10 @@ bool IsLocalePartiallyPopulated(const std::string& locale_name) {
 bool IsLocaleAvailable(const std::string& locale) {
   // If locale has any illegal characters in it, we don't want to try to
   // load it because it may be pointing outside the locale data file directory.
+#if 0 // NO_I18N
   if (!file_util::IsFilenameLegal(ASCIIToUTF16(locale)))
     return false;
+#endif
 
   // IsLocalePartiallyPopulated() can be called here for an early return w/o
   // checking the resource availability below. It'd help when Chrome is run
@@ -345,10 +347,14 @@ void AdjustParagraphDirectionality(string16* paragraph) {
 
 #if defined(OS_WIN)
 std::string GetCanonicalLocale(const std::string& locale) {
+#if 0 // NO_I18N
   return base::i18n::GetCanonicalLocale(locale.c_str());
+#else
+  return locale;
+#endif
 }
 #endif
-
+#if 0 // NO_I18N
 struct AvailableLocalesTraits :
     base::DefaultLazyInstanceTraits<std::vector<std::string> > {
   static std::vector<std::string>* New(void* instance) {
@@ -388,7 +394,7 @@ struct AvailableLocalesTraits :
 
 base::LazyInstance<std::vector<std::string>, AvailableLocalesTraits >
     g_available_locales = LAZY_INSTANCE_INITIALIZER;
-
+#endif
 }  // namespace
 
 namespace l10n_util {
@@ -430,7 +436,7 @@ std::string GetApplicationLocale(const std::string& pref_locale) {
   // First, try the preference value.
   if (!pref_locale.empty())
     candidates.push_back(GetCanonicalLocale(pref_locale));
-
+#if 0 // NO_I18N
   // Next, try the overridden locale.
   const std::vector<std::string>& languages = l10n_util::GetLocaleOverrides();
   if (!languages.empty()) {
@@ -441,6 +447,7 @@ std::string GetApplicationLocale(const std::string& pref_locale) {
     // If no override was set, defer to ICU
     candidates.push_back(base::i18n::GetConfiguredLocale());
   }
+#endif
 
 #elif defined(OS_CHROMEOS) || (defined(USE_AURA) && !defined(OS_LINUX))
 
@@ -476,7 +483,9 @@ std::string GetApplicationLocale(const std::string& pref_locale) {
   std::vector<std::string>::const_iterator i = candidates.begin();
   for (; i != candidates.end(); ++i) {
     if (CheckAndResolveLocale(*i, &resolved_locale)) {
+#if 0 // NO_I18N
       base::i18n::SetICUDefaultLocale(resolved_locale);
+#endif
       return resolved_locale;
     }
   }
@@ -484,7 +493,9 @@ std::string GetApplicationLocale(const std::string& pref_locale) {
   // Fallback on en-US.
   const std::string fallback_locale("en-US");
   if (IsLocaleAvailable(fallback_locale)) {
+#if 0 // NO_I18N
     base::i18n::SetICUDefaultLocale(fallback_locale);
+#endif
     return fallback_locale;
   }
 
@@ -495,6 +506,7 @@ std::string GetApplicationLocale(const std::string& pref_locale) {
 
 bool IsLocaleNameTranslated(const char* locale,
                             const std::string& display_locale) {
+#if 0 // NO_I18N
   string16 display_name =
       l10n_util::GetDisplayNameForLocale(locale, display_locale, false);
   // Because ICU sets the error code to U_USING_DEFAULT_WARNING whether or not
@@ -504,6 +516,9 @@ bool IsLocaleNameTranslated(const char* locale,
   // name for this locale, GetDisplayNameForLocale will just return the
   // locale code.
   return !IsStringASCII(display_name) || UTF16ToASCII(display_name) != locale;
+#else
+    return false;
+#endif
 }
 
 string16 GetDisplayNameForLocale(const std::string& locale,
@@ -542,6 +557,7 @@ string16 GetDisplayNameForLocale(const std::string& locale,
     display_name = GetDisplayNameForLocale(locale_code, display_locale);
   } else
 #endif
+#if 0 // NO_I18N
   {
     UErrorCode error = U_ZERO_ERROR;
     const int kBufferSize = 1024;
@@ -556,6 +572,7 @@ string16 GetDisplayNameForLocale(const std::string& locale,
   // Add directional markup so parentheses are properly placed.
   if (is_for_ui && base::i18n::IsRTL())
     base::i18n::AdjustStringForLocaleDirection(&display_name);
+#endif
   return display_name;
 }
 
@@ -573,6 +590,7 @@ std::string NormalizeLocale(const std::string& locale) {
 
 void GetParentLocales(const std::string& current_locale,
                       std::vector<std::string>* parent_locales) {
+#if 0 // NO_I18N
   std::string locale(NormalizeLocale(current_locale));
 
   const int kNameCapacity = 256;
@@ -585,11 +603,13 @@ void GetParentLocales(const std::string& current_locale,
       break;
     parent_locales->push_back(parent);
   }
+#endif
 }
 
 bool IsValidLocaleSyntax(const std::string& locale) {
   // Check that the length is plausible.
-  if (locale.size() < 2 || locale.size() >= ULOC_FULLNAME_CAPACITY)
+    //#if 0 // NO_I18N
+  if (locale.size() < 2)// || locale.size() >= ULOC_FULLNAME_CAPACITY)
     return false;
 
   // Strip off the part after an '@' sign, which might contain keywords,
@@ -820,6 +840,7 @@ string16 GetStringFUTF16Int(int message_id, int64 a) {
   return GetStringFUTF16(message_id, UTF8ToUTF16(base::Int64ToString(a)));
 }
 
+#if 0 // NO_I18N
 // Specialization of operator() method for string16 version.
 template <>
 bool StringComparator<string16>::operator()(const string16& lhs,
@@ -861,7 +882,7 @@ void SortStrings16(const std::string& locale,
 const std::vector<std::string>& GetAvailableLocales() {
   return g_available_locales.Get();
 }
-
+#endif
 void GetAcceptLanguagesForLocale(const std::string& display_locale,
                                  std::vector<std::string>* locale_codes) {
   for (size_t i = 0; i < arraysize(kAcceptLanguageList); ++i) {
@@ -882,3 +903,8 @@ int GetLocalizedContentsWidthInPixels(int pixel_resource_id) {
 }
 
 }  // namespace l10n_util
+
+bool base::i18n::IsRTL()
+{
+    return false;
+}

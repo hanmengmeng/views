@@ -15,7 +15,7 @@
 #include "SkPostConfig.h"
 
 #ifndef SK_IGNORE_STDINT_DOT_H
-    #include <stdint.h>
+    //#include <stdint.h>
 #endif
 
 #include <stdio.h>
